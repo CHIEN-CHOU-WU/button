@@ -25,7 +25,7 @@ function App() {
     //window.web3.currentProvider.enable();
   }
 
-  const buttonAddress = "0x5bBa5dDA0ADc422e00f704A8a9432Cf2c15c3128"
+  const buttonAddress = "0x986Ac7121B66F9E06da9247b20353814576cA833"
   const buttonCount = new web3.eth.Contract(buttonABI as any, buttonAddress);
   const count = async () => {
     const button = await buttonCount.methods.buttonCount().call()
@@ -36,7 +36,7 @@ function App() {
     web3.eth.sendTransaction({
       from: address,
       to: buttonAddress,
-      value: ethValue.eth
+      value: String(Number(ethValue.eth) * 0.01)
     }).then(
       buttonCount.methods.addButton().send({from:address})
     )
