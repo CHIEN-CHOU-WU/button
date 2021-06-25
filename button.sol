@@ -22,16 +22,17 @@ contract button {
     payable
     returns(address)
     {
-        money += oneEth;
         if ((openingTime >= block.timestamp) || (openingTime == 0)) {
             openingTime = block.timestamp + 10;
             buttonCount += 1;
             addr = msg.sender;
+            money += oneEth;
             // wallet.transfer(msg.value);
             return (addr);
         }
         else{
-            payable(addr).transfer(money-2000000000000000000);
+            money = money-200000000000000000;
+            payable(addr).transfer(money);
             return (addr);
         }
     }
