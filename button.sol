@@ -6,6 +6,7 @@ contract button {
     uint256 public buttonCount = 0;
     address public addr;
     uint256 public contractBalance;
+    bool public finish = false;
     
     uint256 public openingTime = 0;
     address payable wallet;
@@ -26,6 +27,7 @@ contract button {
             return (addr);
         }
         else{
+            finish = true;
             contractBalance = address(this).balance;
             payable(addr).transfer(contractBalance);
             return (addr);
@@ -35,6 +37,7 @@ contract button {
     function resetContract()
     public
     {
+        finish = false;
         openingTime = 0;
     }
 }
